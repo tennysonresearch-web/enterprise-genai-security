@@ -41,7 +41,13 @@ git clone https://github.com/yourusername/enterprise-genai-security.git
 pip install -r requirements.txt
 
 # Run the basic demo
-python multi_layer_detector.py --input "John Smith's SSN is 123-45-6789"
+python multi_layer_detector.py
+
+# Or run the simple demo
+python simple_demo.py
+
+# Explore the notebooks
+python notebooks/01_baseline_evaluation.py
 
 ```
 
