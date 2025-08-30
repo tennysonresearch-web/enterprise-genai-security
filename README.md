@@ -45,29 +45,25 @@ python multi_layer_detector.py --input "John Smith's SSN is 123-45-6789"
 
 ```
 
+
+
 ```
-📁 Repository Structure
+
+## 📁 Repository Structure
 
 ├── notebooks/
-│   ├── 01_baseline_evaluation.ipynb
-│   ├── 02_multi_layer_architecture.ipynb
-│   └── 03_adversarial_synthetic_data.ipynb
-├── src/
-│   ├── detectors/
-│   │   ├── ml_detector.py
-│   │   ├── rule_detector.py
-│   │   └── statistical_validator.py
-│   ├── utils/
-│   │   └── confidence_scorer.py
-│   └── multi_layer_detector.py
-├── tests/
-│   └── test_accuracy.py
-├── data/
-│   └── sample_pii_test.json
+│   ├── 01_baseline_evaluation.py
+│   ├── 02_multi_layer_architecture.py
+│   ├── 03_adversarial_synthetic_data.py
+│   └── 04_accuracy_roadmap.py
+├── multi_layer_detector.py
+├── simple_demo.py
 ├── requirements.txt
-└── README.md
+├── README.md
+└── LICENSE
 
 ```
+
 
 ## 🔬 Approach Details
 
