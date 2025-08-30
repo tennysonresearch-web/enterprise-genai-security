@@ -52,11 +52,9 @@ python notebooks/01_baseline_evaluation.py
 ```
 
 
-
-```
-
 ## 📁 Repository Structure
 
+```
 ├── notebooks/
 │   ├── 01_baseline_evaluation.py
 │   ├── 02_multi_layer_architecture.py
