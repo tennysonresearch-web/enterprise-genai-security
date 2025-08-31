@@ -70,7 +70,7 @@ class MultiLayerPIIDetector:
         
         # Layer 3: Statistical thresholds
         self.entropy_threshold = 2.5
-        self.min_confidence = 0.85
+        self.min_confidence = 0.6
         
     def detect_ml_layer(self, text: str) -> List[PIIResult]:
         """Layer 1: ML-based detection using transformers"""
