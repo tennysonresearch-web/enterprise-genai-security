@@ -35,7 +35,7 @@ Input Text → Layer 1: ML/NLP Detection (BERT variants) → Layer 2: Determinis
 
 ```bash
 # Clone the repository
-git clone https://github.com/yourusername/enterprise-genai-security.git
+git clone https://github.com/tennysonresearch-web/enterprise-genai-security.git
 
 # Install dependencies
 pip install -r requirements.txt
