@@ -1,5 +1,5 @@
 """
-Multi-Layer PII Detection System
+Multi-Layer PII Detection System - Debug Version
 Achieves 98.5% accuracy through three-layer validation
 Target: 99.8% for enterprise production use
 """
@@ -40,27 +40,31 @@ class MultiLayerPIIDetector:
             aggregation_strategy="simple"
         )
         
-        # Layer 2: Deterministic Rules
+        # Layer 2: Deterministic Rules - UPDATED PATTERNS
         self.patterns = {
             'ssn': {
-                'pattern': r'\b\d{3}-\d{2}-\d{4}\b',
+                'pattern': r'\d{3}-\d{2}-\d{4}',
                 'name': 'Social Security Number'
             },
             'credit_card': {
-                'pattern': r'\b\d{4}[\s-]?\d{4}[\s-]?\d{4}[\s-]?\d{4}\b',
+                'pattern': r'\d{4}[\s-]?\d{4}[\s-]?\d{4}[\s-]?\d{4}',
                 'name': 'Credit Card'
             },
             'phone': {
-                'pattern': r'\b(?:\+?1[-.]?)?\(?[0-9]{3}\)?[-.]?[0-9]{3}[-.]?[0-9]{4}\b',
+                'pattern': r'(?:\+?1[-.]?)?\(?[0-9]{3}\)?[-.]?[0-9]{3}[-.]?[0-9]{4}',
                 'name': 'Phone Number'
             },
             'email': {
-                'pattern': r'\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b',
+                'pattern': r'[a-zA-Z0-9][a-zA-Z0-9._%+-]*@[a-zA-Z0-9][a-zA-Z0-9.-]*\.[a-zA-Z]{2,}',
                 'name': 'Email Address'
             },
-            'ip_address': {
-                'pattern': r'\b(?:[0-9]{1,3}\.){3}[0-9]{1,3}\b',
-                'name': 'IP Address'
+            'dob': {
+                'pattern': r'\d{1,2}/\d{1,2}/\d{4}',
+                'name': 'Date of Birth'
+            },
+            'address': {
+                'pattern': r'\d+\s+\w+\s+(?:St|Street|Ave|Avenue|Rd|Road|Dr|Drive|Ln|Lane|Blvd|Boulevard)',
+                'name': 'Street Address'
             }
         }
         
@@ -90,9 +94,19 @@ class MultiLayerPIIDetector:
         """Layer 2: Rule-based detection using regex patterns"""
         results = []
         
+        # Debug: Print what we're searching
+        print(f"\n[DEBUG] Searching text: {text}")
+        
         for pii_type, config in self.patterns.items():
-            matches = re.finditer(config['pattern'], text, re.IGNORECASE)
+            pattern = config['pattern']
+            matches = list(re.finditer(pattern, text, re.IGNORECASE))
+            
+            # Debug: Show what each pattern finds
+            if matches:
+                print(f"[DEBUG] {pii_type} pattern '{pattern}' found {len(matches)} matches")
+            
             for match in matches:
+                print(f"[DEBUG] Found {pii_type}: '{match.group()}'")
                 results.append(PIIResult(
                     text=match.group(),
                     pii_type=config['name'],
@@ -225,6 +239,15 @@ def main():
     print("\n" + "="*60)
     print("Multi-Layer PII Detection Demo")
     print("="*60)
+    
+    # Also run a quick regex test to verify patterns work
+    print("\n[DEBUG] Testing regex patterns directly:")
+    test_email = "jane.doe@hospital.com"
+    email_pattern = r'[a-zA-Z0-9][a-zA-Z0-9._%+-]*@[a-zA-Z0-9][a-zA-Z0-9.-]*\.[a-zA-Z]{2,}'
+    if re.search(email_pattern, test_email):
+        print(f"✓ Email pattern works on '{test_email}'")
+    else:
+        print(f"✗ Email pattern FAILED on '{test_email}'")
     
     for text in test_texts:
         print(f"\nAnalyzing: {text[:50]}...")
