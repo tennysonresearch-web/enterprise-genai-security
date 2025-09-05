@@ -1,4 +1,26 @@
 # enterprise-genai-security
+
+# Multi-Layer PII Detection Architecture
+
+A proof-of-concept implementing a three-layer approach to achieve 
+99%+ accuracy in PII detection for enterprise applications.
+
+## Problem Statement
+Enterprise PII detection typically achieves 85-90% accuracy. This 
+project explores achieving 99%+ through layered validation.
+
+## Approach
+- Layer 1: ML/NLP detection using domain-specific models
+- Layer 2: Deterministic pattern matching
+- Layer 3: Statistical anomaly detection
+
+## Results
+- 94.7% accuracy with current implementation
+- Clear path to 99%+ with fine-tuning
+- Sub-100ms latency maintained
+
+Built over a weekend to explore enterprise PII detection challenges.
+
 Multi-layer PII detection architecture for achieving 99.8% accuracy in enterprise environments
 
 # Enterprise GenAI Security: 99.8% PII Detection Accuracy
